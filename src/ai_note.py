@@ -47,6 +47,7 @@ def ip_analyst_note(ip: str, s: IpStats, cti: Dict[str, dict]) -> str:
     if risk >= 7: level = "HIGH"
     elif risk >= 4: level = "MEDIUM"
 
+
     if not reasons:
         reasons.append("multiple weak indicators that warrant monitoring")
 
