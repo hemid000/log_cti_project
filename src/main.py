@@ -1,12 +1,13 @@
-# src/main.py
 from __future__ import annotations
-import sys, argparse
+import sys
+import argparse
 from pathlib import Path
-from parser import parse_log, unique_ips
+
 from stats import compute_ip_stats, pick_suspicious_ips, compute_global_anomalies
+from parser import parse_log, unique_ips
 from cti import enrich_ips
 from report import render_text_report, render_markdown_report, save_report
-from ai_note import ip_analyst_note, global_analyst_note   # <-- use your ai_note.py
+from ai_note import ip_analyst_note, global_analyst_note
 
 def build_argparser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description="Log Analysis + CTI + Bonus")

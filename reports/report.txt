@@ -16,8 +16,8 @@ IP: 14.103.172.199
         error: 403 Client Error: Forbidden for url: https://www.abuseipdb.com/check/14.103.172.199
     - talos: ERR
         error: 403 Client Error: Forbidden for url: https://talosintelligence.com/reputation_center/lookup?search=14.103.172.199
-    - virustotal: ERR
-        error: 429 Client Error: Too Many Requests for url: https://www.virustotal.com/api/v3/ip_addresses/14.103.172.199
+    - virustotal: OK
+        last_analysis_stats: {'malicious': 7, 'suspicious': 3, 'undetected': 30, 'harmless': 55, 'timeout': 0}
 ------------------------------------------------------------
 IP: 18.237.3.202  [HIGH PRIORITY]
   Requests: 6366
@@ -31,10 +31,10 @@ IP: 18.237.3.202  [HIGH PRIORITY]
         error: 403 Client Error: Forbidden for url: https://www.abuseipdb.com/check/18.237.3.202
     - talos: ERR
         error: 403 Client Error: Forbidden for url: https://talosintelligence.com/reputation_center/lookup?search=18.237.3.202
-    - virustotal: ERR
-        error: 429 Client Error: Too Many Requests for url: https://www.virustotal.com/api/v3/ip_addresses/18.237.3.202
+    - virustotal: OK
+        last_analysis_stats: {'malicious': 7, 'suspicious': 4, 'undetected': 26, 'harmless': 58, 'timeout': 0}
 ------------------------------------------------------------
 
 Analyst Note
 ------------
-IP 14.103.172.199 risk = LOW: uncommon HTTP methods (UNKNOWN).
+IP 14.103.172.199 risk = MEDIUM: uncommon HTTP methods (UNKNOWN), and flagged by 7 VirusTotal engines.
