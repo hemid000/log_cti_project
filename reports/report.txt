@@ -12,12 +12,13 @@ IP: 14.103.172.199
   Methods: GET:401, POST:9, UNKNOWN:2
   Statuses: 200:300, 304:96, 101:8, 403:6, 400:2
   CTI:
-    - abuseipdb: ERR
-        error: 403 Client Error: Forbidden for url: https://www.abuseipdb.com/check/14.103.172.199
-    - talos: ERR
-        error: 403 Client Error: Forbidden for url: https://talosintelligence.com/reputation_center/lookup?search=14.103.172.199
-    - virustotal: OK
-        last_analysis_stats: {'malicious': 7, 'suspicious': 3, 'undetected': 30, 'harmless': 55, 'timeout': 0}
+    - abuseipdb: OK
+        abuse_confidence_score: 100
+        total_reports: 1381
+        country: CN
+        isp: Beijing Volcano Engine Technology Co., Ltd.
+    - virustotal: ERR
+        error: rate_limited (VT 429)
 ------------------------------------------------------------
 IP: 18.237.3.202  [HIGH PRIORITY]
   Requests: 6366
@@ -27,14 +28,15 @@ IP: 18.237.3.202  [HIGH PRIORITY]
   Methods: GET:6291, OPTIONS:27, UNKNOWN:9, POST:8, PROPFIND:8, TRACE:4, TRACK:4, HEAD:3, DEBUG:2, INDEX:2, PUT:2, BSCZ:1, GPEF:1, NVFYPLCD:1, SEARCH:1, SSTP_DUPLEX_POST:1, THUNQMFS:1
   Statuses: 200:6236, 304:45, 301:33, 500:20, 400:14, 204:12, 405:4, 101:1, 499:1
   CTI:
-    - abuseipdb: ERR
-        error: 403 Client Error: Forbidden for url: https://www.abuseipdb.com/check/18.237.3.202
-    - talos: ERR
-        error: 403 Client Error: Forbidden for url: https://talosintelligence.com/reputation_center/lookup?search=18.237.3.202
-    - virustotal: OK
-        last_analysis_stats: {'malicious': 7, 'suspicious': 4, 'undetected': 26, 'harmless': 58, 'timeout': 0}
+    - abuseipdb: OK
+        abuse_confidence_score: 88
+        total_reports: 38
+        country: US
+        isp: Amazon.com, Inc.
+    - virustotal: ERR
+        error: rate_limited (VT 429)
 ------------------------------------------------------------
 
 Analyst Note
 ------------
-IP 14.103.172.199 risk = MEDIUM: uncommon HTTP methods (UNKNOWN), and flagged by 7 VirusTotal engines.
+IP 14.103.172.199 risk = MEDIUM: uncommon HTTP methods (UNKNOWN), and AbuseIPDB score 100% (high).

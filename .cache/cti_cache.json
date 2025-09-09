@@ -1,52 +1,36 @@
 {
   "14.103.172.199": {
     "abuseipdb": {
-      "ok": false,
-      "data": {},
-      "error": "403 Client Error: Forbidden for url: https://www.abuseipdb.com/check/14.103.172.199"
-    },
-    "talos": {
-      "ok": false,
-      "data": {},
-      "error": "403 Client Error: Forbidden for url: https://talosintelligence.com/reputation_center/lookup?search=14.103.172.199"
-    },
-    "virustotal": {
       "ok": true,
       "data": {
-        "last_analysis_stats": {
-          "malicious": 7,
-          "suspicious": 3,
-          "undetected": 30,
-          "harmless": 55,
-          "timeout": 0
-        }
+        "abuse_confidence_score": 100,
+        "total_reports": 1381,
+        "country": "CN",
+        "isp": "Beijing Volcano Engine Technology Co., Ltd."
       },
       "error": null
+    },
+    "virustotal": {
+      "ok": false,
+      "data": {},
+      "error": "rate_limited (VT 429)"
     }
   },
   "18.237.3.202": {
     "abuseipdb": {
-      "ok": false,
-      "data": {},
-      "error": "403 Client Error: Forbidden for url: https://www.abuseipdb.com/check/18.237.3.202"
-    },
-    "talos": {
-      "ok": false,
-      "data": {},
-      "error": "403 Client Error: Forbidden for url: https://talosintelligence.com/reputation_center/lookup?search=18.237.3.202"
-    },
-    "virustotal": {
       "ok": true,
       "data": {
-        "last_analysis_stats": {
-          "malicious": 7,
-          "suspicious": 4,
-          "undetected": 26,
-          "harmless": 58,
-          "timeout": 0
-        }
+        "abuse_confidence_score": 88,
+        "total_reports": 38,
+        "country": "US",
+        "isp": "Amazon.com, Inc."
       },
       "error": null
+    },
+    "virustotal": {
+      "ok": false,
+      "data": {},
+      "error": "rate_limited (VT 429)"
     }
   }
 }
