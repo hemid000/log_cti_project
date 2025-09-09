@@ -1,0 +1,14 @@
+# Python junk
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Local caches & secrets
+.cache/
+.env
+
+# Reports output
+reports/*.txt
+reports/*.md

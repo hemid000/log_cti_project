@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Log Analysis & CTI — Report Viewer</title>
+  <style>
+    :root {
+      --bg: #0f1217;
+      --panel: #151a22;
+      --text: #e6edf3;
+      --muted: #93a1b1;
+      --accent: #6aa9ff;
+      --ok: #2ecc71;
+      --err: #ff6b6b;
+      --border: #222a35;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+      background: linear-gradient(180deg, #0b0e13, var(--bg));
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      position: sticky; top: 0; z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(15,18,23,.7);
+      border-bottom: 1px solid var(--border);
+    }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 16px; }
+    h1 { font-size: 1.25rem; margin: 0; letter-spacing: .3px; }
+    .toolbar { display: flex; gap: 8px; align-items: center; margin-top: 10px; flex-wrap: wrap; }
+    button, select {
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 8px 12px; cursor: pointer;
+    }
+    button:hover { border-color: #334155; }
+    .pill {
+      display:inline-flex; align-items:center; gap:6px;
+      border:1px solid var(--border); background:#0d1117; padding:6px 10px; border-radius:999px; color:var(--muted);
+      font-size:.9rem;
+    }
+    .content { max-width: 980px; margin: 20px auto 60px; padding: 0 16px; }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 22px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    }
+    /* Markdown styles */
+    .md h1 { font-size: 1.6rem; margin-top: 0; }
+    .md h2 { font-size: 1.25rem; margin-top: 1.25em; }
+    .md h3 { font-size: 1.05rem; margin-top: 1.15em; }
+    .md code { background:#0b0f14; border:1px solid var(--border); padding:2px 6px; border-radius:6px; }
+    .md pre code {
+      display:block; padding:12px; border-radius:12px; overflow:auto;
+      background:#0b0f14; border:1px solid var(--border);
+    }
+    .md table {
+      width: 100%; border-collapse: collapse; margin: 12px 0;
+      border: 1px solid var(--border);
+    }
+    .md th, .md td { padding: 8px 10px; border: 1px solid var(--border); }
+    .md tr:nth-child(even) { background: #0f141b; }
+    .status-ok { color: var(--ok); }
+    .status-err { color: var(--err); }
+    footer { color: var(--muted); text-align:center; font-size:.9rem; margin: 40px 0; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+  <!-- marked.js to render Markdown in-browser -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Log Analysis & CTI — Report Viewer</h1>
+      <div class="toolbar">
+        <span class="pill">📄 Source: <code id="srcName">reports/report.md</code></span>
+        <button id="btnMd">Load Markdown</button>
+        <button id="btnTxt">Load Text</button>
+        <button id="btnCopy">Copy as Markdown</button>
+        <button id="btnRefresh">Refresh</button>
+        <select id="selFile">
+          <option value="reports/report.md" selected>reports/report.md</option>
+          <option value="reports/report.txt">reports/report.txt</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <div class="card md" id="output">Loading…</div>
+    <p class="wrap" style="margin-top:14px; color:var(--muted)">
+      Tip: If nothing loads from <code>file://</code>, serve this folder locally:<br/>
+      <code>python -m http.server 8000</code> → then open <a href="http://localhost:8000/">http://localhost:8000/</a>
+    </p>
+  </main>
+
+  <footer>
+    Made with ❤️ for your Final Project — static viewer, no tracking, no backend.
+  </footer>
+
+<script>
+  const output = document.getElementById('output');
+  const srcName = document.getElementById('srcName');
+  const selFile = document.getElementById('selFile');
+  const btnMd = document.getElementById('btnMd');
+  const btnTxt = document.getElementById('btnTxt');
+  const btnCopy = document.getElementById('btnCopy');
+  const btnRefresh = document.getElementById('btnRefresh');
+
+  let currentSrc = selFile.value;
+
+  async function fetchText(path) {
+    const res = await fetch(path, {cache: "no-store"});
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    return await res.text();
+  }
+
+  async function loadMarkdown(path) {
+    try {
+      const md = await fetchText(path);
+      srcName.textContent = path;
+      currentSrc = path;
+      // render with marked
+      output.innerHTML = marked.parse(md);
+    } catch (e) {
+      output.innerHTML = `<p class="status-err"><b>Failed to load:</b> ${path}<br/>${e.message}</p>`;
+    }
+  }
+
+  async function loadPlain(path) {
+    try {
+      const txt = await fetchText(path);
+      srcName.textContent = path;
+      currentSrc = path;
+      output.innerHTML = `<pre><code>${escapeHtml(txt)}</code></pre>`;
+    } catch (e) {
+      output.innerHTML = `<p class="status-err"><b>Failed to load:</b> ${path}<br/>${e.message}</p>`;
+    }
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  }
+
+  async function copyCurrent() {
+    try {
+      const txt = await fetchText(currentSrc);
+      await navigator.clipboard.writeText(txt);
+      btnCopy.textContent = "Copied ✓";
+      setTimeout(()=>btnCopy.textContent="Copy as Markdown", 1400);
+    } catch (e) {
+      alert("Copy failed: " + e.message);
+    }
+  }
+
+  selFile.addEventListener('change', () => {
+    const path = selFile.value;
+    // auto-detect extension: .md -> render as MD, else as plain
+    if (path.endsWith(".md")) loadMarkdown(path); else loadPlain(path);
+  });
+  btnMd.addEventListener('click', () => loadMarkdown(selFile.value));
+  btnTxt.addEventListener('click', () => loadPlain(selFile.value));
+  btnCopy.addEventListener('click', copyCurrent);
+  btnRefresh.addEventListener('click', () => {
+    if (selFile.value.endsWith(".md")) loadMarkdown(selFile.value);
+    else loadPlain(selFile.value);
+  });
+
+  // initial load: try MD then fallback to TXT
+  (async () => {
+    try { await loadMarkdown("reports/report.md"); }
+    catch { await loadPlain("reports/report.txt"); }
+  })();
+</script>
+</body>
+</html>
