@@ -61,5 +61,5 @@ def global_analyst_note(glob: Dict[str, float | int]) -> str:
     if glob["weird_method_ips"] > 0:
         bits.append(f"{glob['weird_method_ips']} IP(s) used uncommon HTTP methods")
     if len(bits) == 2 and "elevated" not in bits[1]:
-        bits.append("no other strong global anomalies")
-    return "Global view: " + "; ".join(bits) + "."
+        bits.append("no other strong General anomalies")
+    return "General view: " + "; ".join(bits) + "."

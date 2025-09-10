@@ -1,15 +1,15 @@
 # Log Analysis & CTI — Suspicious IPs Report
 
-## Global Anomalies
+## Geberal Anomalies
 
-Global view: 6778 total requests from 2 unique IPs; 2 IP(s) used uncommon HTTP methods; no other strong global anomalies.
+Global view: 6778 total requests from 2 unique IPs; 2 IP(s) used uncommon HTTP methods; no other strong General anomalies.
 
 ## Suspicious IP Summary
 
 | IP | Requests | 4xx | 5xx | Error Rate | Weird Methods | Tool UAs | Priority |
 |---|---:|---:|---:|---:|---|---|---|
 | 14.103.172.199 | 412 | 8 | 0 | 1.94% | UNKNOWN | - | — |
-| 18.237.3.202 | 6366 | 19 | 20 | 0.61% | BSCZ, DEBUG, GPEF, INDEX, NVFYPLCD, PROPFIND, SEARCH, SSTP_DUPLEX_POST, THUNQMFS, TRACE, TRACK, UNKNOWN | dirbuster, nikto, nmap | HIGH |
+| 18.237.3.202 | 6366 | 19 | 20 | 0.61% | BSCZ, GPEF, INDEX, NVFYPLCD, PROPFIND, SEARCH, SSTP_DUPLEX_POST, THUNQMFS, TRACK, UNKNOWN | dirbuster, nikto, nmap | HIGH |
 
 ### 14.103.172.199
 
@@ -60,6 +60,6 @@ GET:6291, OPTIONS:27, UNKNOWN:9, POST:8, PROPFIND:8, TRACE:4, TRACK:4, HEAD:3, D
 
 ---
 
-## Analyst Note
+##AI Analyst Note
 
 IP 14.103.172.199 risk = MEDIUM: uncommon HTTP methods (UNKNOWN), and AbuseIPDB score 100% (high).

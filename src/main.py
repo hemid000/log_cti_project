@@ -45,7 +45,7 @@ def main():
         print("[i] Running CTI lookups...")
         cti_results = enrich_ips(suspicious)
 
-    # Analyst note
+    #AI Analyst note
     note = None
     if suspicious:
         first = suspicious[0]

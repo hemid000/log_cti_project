@@ -17,7 +17,7 @@ def render_text_report(suspicious_ips: List[str], ip_stats: Dict[str, IpStats],
     lines.append("")
 
     if global_note:
-        lines.append("Global Anomalies")
+        lines.append("General Anomalies")
         lines.append("----------------")
         lines.append(global_note)
         lines.append("")
@@ -49,7 +49,7 @@ def render_text_report(suspicious_ips: List[str], ip_stats: Dict[str, IpStats],
 
     if analyst_note:
         lines.append("")
-        lines.append("Analyst Note")
+        lines.append("AI Analyst Note")
         lines.append("------------")
         lines.append(analyst_note)
 
@@ -63,7 +63,7 @@ def render_markdown_report(suspicious_ips: List[str], ip_stats: Dict[str, IpStat
     md.append("# Log Analysis & CTI — Suspicious IPs Report\n")
 
     if global_note:
-        md.append("## Global Anomalies\n")
+        md.append("## General Anomalies\n")
         md.append(global_note + "\n")
 
     if not suspicious_ips:
@@ -107,7 +107,7 @@ def render_markdown_report(suspicious_ips: List[str], ip_stats: Dict[str, IpStat
         md.append("\n---\n")
 
     if analyst_note:
-        md.append("## Analyst Note\n")
+        md.append("##AI Analyst Note\n")
         md.append(analyst_note + "\n")
 
     return "\n".join(md)
