@@ -62,4 +62,4 @@ GET:6291, OPTIONS:27, UNKNOWN:9, POST:8, PROPFIND:8, TRACE:4, TRACK:4, HEAD:3, D
 
 ## AI Analyst Note
 
-IP 14.103.172.199 risk = MEDIUM:  The high number of total reports (1381) on AbuseIPDB, despite an OK status, combined with a rate-limited VirusTotal check, indicates potential malicious activity warranting further investigation, although the low error rate and 4xx/200 ratio in current stats suggest no immediate critical threat.
+IP 14.103.172.199 risk = MEDIUM: The IP has a high number of total reports (1381) on AbuseIPDB despite an acceptable 4xx/200 ratio and low error rate in current stats, coupled with a rate-limited VirusTotal lookup suggesting potential malicious activity that requires further investigation.
