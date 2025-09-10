@@ -1,13 +1,13 @@
 # Log Analysis & CTI — Suspicious IPs Report
 
-## Geberal Anomalies
+## General Anomalies
 
-Global view: 6778 total requests from 2 unique IPs; 2 IP(s) used uncommon HTTP methods; no other strong General anomalies.
+General view: 6778 total requests from 2 unique IPs; 2 IP(s) used uncommon HTTP methods; no other strong General anomalies.
 
 ## Suspicious IP Summary
 
-| IP | Requests | 4xx | 5xx | Error Rate | Weird Methods | Tool UAs | Priority |
-|---|---:|---:|---:|---:|---|---|---|
+| IP | Requests | 4xx | 5xx | Error Rate | Weird Methods | Tool User-Agents | Priority |
+|---|---:|---:|---:|---:|---|---|:---:|
 | 14.103.172.199 | 412 | 8 | 0 | 1.94% | UNKNOWN | - | — |
 | 18.237.3.202 | 6366 | 19 | 20 | 0.61% | BSCZ, GPEF, INDEX, NVFYPLCD, PROPFIND, SEARCH, SSTP_DUPLEX_POST, THUNQMFS, TRACK, UNKNOWN | dirbuster, nikto, nmap | HIGH |
 
@@ -37,7 +37,7 @@ GET:401, POST:9, UNKNOWN:2
 
 ### 18.237.3.202
 
-**Priority:** HIGH — malicious tool user-agent detected.
+**Priority:** HIGH — tool User-Agents detected (dirbuster, nikto, nmap).
 
 **Methods:**
 ```
@@ -60,6 +60,6 @@ GET:6291, OPTIONS:27, UNKNOWN:9, POST:8, PROPFIND:8, TRACE:4, TRACK:4, HEAD:3, D
 
 ---
 
-##AI Analyst Note
+## AI Analyst Note
 
-IP 14.103.172.199 risk = MEDIUM: uncommon HTTP methods (UNKNOWN), and AbuseIPDB score 100% (high).
+IP 14.103.172.199 risk = MEDIUM:  The high number of total reports (1381) on AbuseIPDB, despite an OK status, coupled with a rate limit hit on VirusTotal, suggests potential malicious activity that warrants further investigation; the relatively low error rate in recent stats is not enough to mitigate this concern.

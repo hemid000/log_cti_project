@@ -2,8 +2,8 @@ LOG ANALYSIS & CTI — Suspicious IPs Report
 ============================================================
 
 General Anomalies
-----------------
-Global view: 6778 total requests from 2 unique IPs; 2 IP(s) used uncommon HTTP methods; no other strong General anomalies.
+-----------------
+General view: 6778 total requests from 2 unique IPs; 2 IP(s) used uncommon HTTP methods; no other strong General anomalies.
 
 IP: 14.103.172.199
   Requests: 412
@@ -20,11 +20,11 @@ IP: 14.103.172.199
     - virustotal: ERR
         error: rate_limited (VT 429)
 ------------------------------------------------------------
-IP: 18.237.3.202  [HIGH PRIORITY]
+IP: 18.237.3.202  [HIGH PRIORITY — tool User-Agents detected (dirbuster, nikto, nmap)]
   Requests: 6366
   4xx: 19  |  5xx: 20  |  Error Rate: 0.61%
   Weird Methods: BSCZ, GPEF, INDEX, NVFYPLCD, PROPFIND, SEARCH, SSTP_DUPLEX_POST, THUNQMFS, TRACK, UNKNOWN
-  Malicious/Tool UAs: dirbuster, nikto, nmap
+  Malicious/User-Agents: dirbuster, nikto, nmap
   Methods: GET:6291, OPTIONS:27, UNKNOWN:9, POST:8, PROPFIND:8, TRACE:4, TRACK:4, HEAD:3, DEBUG:2, INDEX:2, PUT:2, BSCZ:1, GPEF:1, NVFYPLCD:1, SEARCH:1, SSTP_DUPLEX_POST:1, THUNQMFS:1
   Statuses: 200:6236, 304:45, 301:33, 500:20, 400:14, 204:12, 405:4, 101:1, 499:1
   CTI:
@@ -38,5 +38,5 @@ IP: 18.237.3.202  [HIGH PRIORITY]
 ------------------------------------------------------------
 
 AI Analyst Note
-------------
+----------------
 IP 14.103.172.199 risk = MEDIUM: uncommon HTTP methods (UNKNOWN), and AbuseIPDB score 100% (high).
