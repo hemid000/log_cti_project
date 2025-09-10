@@ -1,0 +1,54 @@
+Log Analysis & CTI — Run Guide
+How to Run
+
+Go to the project folder:
+
+cd C:\Users\Student\Desktop\Python\log_cti_project
+
+
+Delete any old reports (report.md and report.txt) inside the reports folder.
+(This avoids confusion when viewing updated files.)
+
+Run the analyzer with AI support:
+
+python .\src\main.py .\data\access_log.txt --format md --ai
+python .\src\main.py .\data\access_log.txt --format txt --ai
+
+This parses the access_log.txt file.
+
+It enriches suspicious IPs with CTI (AbuseIPDB, Talos, VirusTotal).
+
+It generates a Markdown report in the reports/ folder.
+
+--ai uses the AI model (DeepSeek) to create an Analyst Note. If AI is unavailable, the script falls back to heuristic notes.
+
+Explanation of Flags
+
+--format md → saves output as Markdown (report.md).
+
+--format txt → saves output as plain text (report.txt).
+
+--ai → adds AI-powered analyst notes.
+
+
+Code Structure
+log_cti_project/
+│
+├── data/
+│   └── access_log.txt       # input log file
+│
+├── reports/                 # output reports (report.md, report.txt)
+│
+├── src/
+│   ├── main.py              # entry point, handles arguments + workflow
+│   ├── parser.py            # parses log file into entries
+│   ├── stats.py             # computes stats, error rates, suspicious IPs
+│   ├── cti.py               # enriches IPs with AbuseIPDB, Talos, VirusTotal
+│   ├── report.py            # generates text/markdown reports
+│   ├── ai_note.py           # heuristic analyst note generator
+│   └── ai_llm.py            # AI (LLM) analyst note generator
+│
+└── requirements.txt         # Python dependencies
+
+
+👉 After running, open reports/report.md in VS Code or any Markdown viewer to check the analysis.
